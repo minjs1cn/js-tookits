@@ -1,8 +1,15 @@
 {
   "name": "@minjs1cn/toolkits",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "lib/index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/minjs1cn/js-tookits"
+  },
   "devDependencies": {
     "typescript": "^4.1.3"
   },
