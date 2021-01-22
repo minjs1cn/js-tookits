@@ -7,3 +7,7 @@ const FirstAndLastSpacesReg = /^\s+|\s+$/g
 const replace = String.prototype.replace
 
 export const trim = (str: string) => replace.call(str, FirstAndLastSpacesReg, '' as any)
+
+export function hump2str(str: string) {
+  return str.replace(/([A-Z])/g, (_, s) =>'_' + s.toLowerCase())
+}
