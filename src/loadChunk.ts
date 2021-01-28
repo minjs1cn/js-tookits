@@ -96,7 +96,7 @@ const loadScriptChunk = (function () {
   return (chunkId: string) => {
     if (installedScriptChunks[chunkId]) return installedScriptChunks[chunkId]
 
-    return (installedScriptChunks[chunkId] = loadCss(chunkId))
+    return (installedScriptChunks[chunkId] = loadScript(chunkId))
   }
 })()
 
@@ -112,27 +112,27 @@ const chunkPath = (host: string, chunkId: string, suffix: string) => `${host}/${
  * 加载chunk，返回一个数组，数组第一项为 对象，数组第二项为 清除 chunk 缓存的函数
  * @param {String} host CDN地址
  */
-export const useChunkLoader = (host: string) => {
+export function useChunkLoader(host: string) {
   const cssUrl = (chunkId: string) => chunkPath(host || '', chunkId, '.css')
   const scriptUrl = (chunkId: string) => chunkPath(host || '', chunkId, '.js')
   // 对加载的模块进行缓存
   const installedChunk: {
-    [index: string]: unknown
+    [index: string]: any
   } = {}
 
   return [
-    (id: string, name: string, css = true) => {
+    function loadChunk<T>(id: string, name: string, css = true): Promise<T> {
       if (installedChunk[id]) return Promise.resolve(installedChunk[id])
 
-      return Promise.all(
+      return Promise.all([
         loadScriptChunk(scriptUrl(id)),
         // @ts-ignore
         css ? loadCssChunk(cssUrl(id)) : null
-      ).then(() => {
+      ]).then(() => {
         return (installedChunk[id] = (window as any)[name])
       })
     },
-    (id: string) => {
+    function (id: string) {
       protectedExecute((installedChunk[id] as any).destory)
       delete installedChunk[id]
     }
