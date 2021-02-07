@@ -1,6 +1,6 @@
 import { encode, decode } from './url'
 
-interface Result { [index: string]: string | undefined }
+interface Result { [index: string]: string | number | undefined | null }
 
 function parse(query: string): Result {
 
@@ -35,7 +35,7 @@ function stringify(params: Result) {
 
       value = v === null || v === undefined ? '' : v
 
-      return `${key}=${encode(value)}`
+      return `${key}=${encode(value as string)}`
     })
     .join('&')
 }
