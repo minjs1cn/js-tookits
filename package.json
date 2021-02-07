@@ -1,10 +1,11 @@
 {
   "name": "@minjs1cn/toolkits",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "npx tsc"
+    "build": "npx tsc && npx tsc --module esnext --outDir es"
   },
   "repository": {
     "type": "github",
