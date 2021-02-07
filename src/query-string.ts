@@ -1,8 +1,10 @@
 import { encode, decode } from './url'
 
-interface Result { [index: string]: string | number | undefined | null }
+interface StringifyParams{ [index: string]: string | number | undefined | null }
 
-function parse(query: string): Result {
+interface ParseResult { [index: string]: string }
+
+function parse(query: string): ParseResult {
 
 	// Create an object with no prototype
 	const ret = Object.create(null);
@@ -22,10 +24,10 @@ function parse(query: string): Result {
     kvs = kv.split('=')
     res[kvs[0]] = decode(kvs[1])
     return res
-  }, {} as Result)
+  }, {} as ParseResult)
 }
 
-function stringify(params: Result) {
+function stringify(params: StringifyParams) {
   let value
   let v
 
