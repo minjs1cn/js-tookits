@@ -1,17 +1,30 @@
 {
   "name": "@minjs1cn/toolkits",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "npx tsc && npx tsc --module esnext --outDir es"
+    "build": "tsc && any-cli build-toolkit"
   },
+  "files": [
+    "es",
+    "lib",
+    "types"
+  ],
+  "typings": "types/index.d.ts",
   "repository": {
     "type": "github",
     "url": "https://github.com/minjs1cn/js-tookits"
   },
   "devDependencies": {
-    "typescript": "^4.1.3"
+    "@minjs1cn/any-cli": "^2.0.1",
+    "@types/blueimp-md5": "^2.18.0",
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "blueimp-md5": "^2.18.0",
+    "clipboard": "^2.0.8",
+    "tiny-emitter": "^2.1.0"
   }
 }
