@@ -1,6 +1,6 @@
-# `js-toolkits`
+# `@minjs1cn/toolkits`
 
-js工具包，不要再CV了！
+一些常用的工具集合
 
 ## Usage
 
@@ -9,5 +9,5 @@ yarn add @minjs1cn/toolkits
 ```
 
 ```ts
-import {} from '@minjs1cn/toolkits/lib/xxxx'
+import {} from '@minjs1cn/toolkits'
 ```
